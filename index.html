@@ -12,13 +12,48 @@
   
 </head>
 <body>
+
+<h1>Covid-19 2020 World situation</h1>
+
+<h2> Countries with more infections </h2>
+<div id="pie_chart"></div>
+
+<h2> New cases for each day (Inida) </h2>
+<div id="in_line"></div>
   
-<div id="symbol_map"></div>
+<h2> New cases for each day (Brazil)  </h2>
+<div id="br_line"></div>
+
+<h2>New cases for each day (America) </h2>
+<div id="us_line"></div>
+  
+<h2>World cumulative deaths distribution</h2>
+<div id="world_ch"></div>
 
 <script type="text/javascript">
-
-  var spec2 = "js/covid_ch_map.json";
-  vegaEmbed('#symbol_map', spec2).then(function(result) {
+  
+  var vis1 = "js/covid_pie_chart.json"
+  vegaEmbed('#pie_chart', vis1).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+  
+  var vis2 = "js/covid_in_line_dot.json"; 
+  vegaEmbed('#in_line', vis2).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+  
+  var vis3 = "js/covid_br_line_dot.json";
+  vegaEmbed('#br_line', vis3).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+  
+  var vis4 = "js/covid_us_line_dot.json";
+  vegaEmbed('#us_line', vis4).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+  
+  var vis5 = "js/covid_ch_map.json";
+  vegaEmbed('#world_ch', vis5).then(function(result) {
     // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
   }).catch(console.error);
 </script>
