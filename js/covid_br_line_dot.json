@@ -1,0 +1,37 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "title": "New cases per day in Brazil from 03 Jan 2020 -15 Oct 2020",
+  "description": "Distribution of new cases in Brazil from 03 Jan 2020 -15 Oct 2020",
+  "width": 400,
+  "height": 300,
+  "data": {"url": "https://yunconglu.github.io/FIT3179/covid.csv"},
+  "transform": [
+    {"filter": "datum.New_cases>0"},
+    {"filter": "datum.New_cases<=1000000"},
+    {"filter": {"field": "Country", "equal": "Brazil"}},
+    {
+      "window": [{"field": "New_cases", "op": "mean", "as": "rolling_mean"}],
+      "frame": [-15, 15]
+    }
+  ],
+  "encoding": {
+    "x": {"field": "Date_reported", "type": "temporal", "title": "Date"},
+    "y": {"type": "quantitative", "axis": {"title": "Averag New cases"}}
+  },
+  "layer": [
+    {
+      "mark": {"type": "point", "opacity": 0.3},
+      "encoding": {"y": {"field": "New_cases", "title": "Max Temperature"}}
+    },
+    {
+      "mark": {"type": "line", "color": "red", "size": 1},
+      "encoding": {
+        "y": {
+          "field": "rolling_mean",
+          "title": "Rolling Mean of Max Temperature"
+        }
+      }
+    }
+  ],
+  "config": {}
+}
