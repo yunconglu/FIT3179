@@ -13,40 +13,27 @@
       "lookup": "properties.NAME",
       "from": {
         "data": {
-          "url": "https://yunconglu.github.io/FIT3179/WHO-COVID-19-global-data.csv"
+          "url": "https://yunconglu.github.io/FIT3179/covid.csv"
         },
-        "key": " Country",
-        "fields": [" Cumulative_deaths"]
+        "key": "Country",
+        "fields": ["Cumulative_deaths"]
       }
     }
   ],
-  "selection": {
-    "Cumulative_deaths_count": {
-      "type": "single",
-      "fields": ["Cumulative_deaths"],
-      "bind": {
-        "Cumulative_deaths": {
-          "input": "range",
-          "min": 0,
-          "max": 1000000,
-          "step": 1000
-        }
-      }
-    }
-  },
   "mark": {"type": "geoshape"},
   "encoding": {
     "color": {
-      "field": " Cumulative_deaths",
+      "field": "Cumulative_deaths",
       "type": "quantitative",
       "scale": {
         "type": "threshold",
-        "domain": [100, 5000, 10000, 30000, 100000, 150000, 200000],
+        "domain": [100, 5000, 10000, 30000, 100000, 150000],
         "range": [
           "#D4F2E7",
+          "#F0E68C",
           "#fdbe85",
           "#fd8d3c",
-          "#e6550d",
+          "#FF0000",
           "#B22222",
           "#800000"
         ]
