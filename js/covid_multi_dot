@@ -46,19 +46,16 @@
   ],
   "transform": [
     
-    {"filter": "datum.Cumulative_cases "},
-    {"filter": "datum.Cumulative_deaths > 0"},
-    {"filter": "datum.Cumulative_cases > Cumulative_Above"},
-    {"filter": "Continent_selection == null || datum.WHO_region == Continent_selection"},
-    {
-      "calculate": "datum.Cumulative_deaths/datum.Cumulative_cases",
-      "as": "deaths rate"
-    },
+    
     {"joinaggregate": [{"op": "sum", "field": "New_cases", "as": "max_cases"}],
       "groupby": ["Country"]}
     ,
     {"joinaggregate": [{"op": "sum", "field": "New_deaths", "as": "max_deaths"}],
-      "groupby": ["Country"]}
+      "groupby": ["Country"]},
+      {"filter": "datum.Cumulative_cases>100 "},
+    {"filter": "datum.Cumulative_deaths > 1"},
+    {"filter": "datum.Cumulative_cases > Cumulative_Above"},
+    {"filter": "Continent_selection == null || datum.WHO_region == Continent_selection"}
   ],
   "encoding": {
     "x": {
@@ -71,6 +68,7 @@
     "y": {
       "field": "max_deaths",
       "type": "quantitative",
+      "title": "Cumulative_death",
       "axis": {"tickCount": 6},
       "scale": {"type": "log", "domain": [1, 1200000]}
     }
@@ -125,12 +123,7 @@
         "tooltip": [
           {"field": "Country", "type": "nominal"},
           {"field": "max_cases", "type": "quantitative", "format": ","},
-          {"field": "max_deaths", "type": "quantitative", "format": ","},
-          {
-            "field": "death rate",
-            "type": "quantitative",
-            "format": ".2f"
-          }
+          {"field": "max_deaths", "type": "quantitative", "format": ","}
         ]
       }
     },
@@ -139,8 +132,8 @@
         "type": "text",
         "align": "right",
         "baseline": "middle",
-        "dx": -12,
-        "fontSize": 11.5,
+        "dx": -19,
+        "fontSize": 15.5,
         "fontStyle": "italic"
       },
       "encoding": {
@@ -156,12 +149,7 @@
         "tooltip": [
           {"field": "Country", "type": "nominal"},
           {"field": "max_cases", "type": "quantitative", "format": ","},
-          {"field": "max_deaths", "type": "quantitative", "format": ","},
-          {
-            "field": "death rate",
-            "type": "quantitative",
-            "format": ".2f"
-          }
+          {"field": "max_deaths", "type": "quantitative", "format": ","}
         ]
       }
     }
