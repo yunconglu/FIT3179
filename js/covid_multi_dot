@@ -1,0 +1,169 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "width": 800,
+  "height": 600,
+  "title": "Cases for Countries (03 Jan 2020 -15 Oct 2020)",
+  "data": {
+    "url": "https://yunconglu.github.io/FIT3179/covid.csv"
+  },
+  "params": [
+    {
+      "name": "Cumulative_Above",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 1500000,
+        "step": 1000,
+        "name": "Minimum Cases: "
+      }
+    },
+    {
+      "name": "Continent_selection",
+      "bind": {
+        "input": "select",
+        "options": [
+          null,
+          "EMRO",
+          "EURO",
+          "AFRO",
+          "WPRO",
+          "AMRO",
+          "SEARO"
+        ],
+        "labels":[
+          "Show All",
+          "EMRO",
+          "EURO",
+          "AFRO",
+          "WPRO",
+          "AMRO",
+          "SEARO"
+        ],
+        "name": "Continent Selection: "
+      }
+    }
+  ],
+  "transform": [
+    
+    {"filter": "datum.Cumulative_cases "},
+    {"filter": "datum.Cumulative_deaths > 0"},
+    {"filter": "datum.Cumulative_cases > Cumulative_Above"},
+    {"filter": "Continent_selection == null || datum.WHO_region == Continent_selection"},
+    {
+      "calculate": "datum.Cumulative_deaths/datum.Cumulative_cases",
+      "as": "deaths rate"
+    },
+    {"joinaggregate": [{"op": "sum", "field": "New_cases", "as": "max_cases"}],
+      "groupby": ["Country"]}
+    ,
+    {"joinaggregate": [{"op": "sum", "field": "New_deaths", "as": "max_deaths"}],
+      "groupby": ["Country"]}
+  ],
+  "encoding": {
+    "x": {
+      "field": "max_cases",
+      "type": "quantitative",
+      "title": "Cumulative_cases",
+      "axis": {"tickCount": 7},
+      "scale": {"type": "log", "domain": [1, 1500000]}
+    },
+    "y": {
+      "field": "max_deaths",
+      "type": "quantitative",
+      "axis": {"tickCount": 6},
+      "scale": {"type": "log", "domain": [1, 1200000]}
+    }
+  },
+  "layer": [
+    {
+      "selection": {
+        "continent_highlight": {
+          "type": "multi",
+          "fields": ["WHO_region"],
+          "bind": "legend"
+        }
+      },
+      "mark": "circle",
+      "encoding": {
+        "size": {
+          "field": "max_cases",
+          "type": "quantitative",
+          "scale": {
+            "type": "threshold",
+            "domain": [50000, 100000, 500000, 750000, 1200000],
+            "range": [10, 50, 150, 200, 300, 400]
+          },
+          "legend": {"format": ".1s"}
+        },
+        "color": {
+          "field": "WHO_region",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "EMRO",
+          "EURO",
+          "AFRO",
+          "WPRO",
+          "AMRO",
+          "SEARO"
+            ],
+            "range": [
+              "#e41a1c",
+              "#984ea3",
+              "#ff7f00",
+              "#a6cee3",
+              "#377eb8",
+              "#a65628"
+            ]
+          }
+        },
+        "opacity": {
+          "condition": {"selection": "continent_highlight", "value": 0.6},
+          "value": 0.2
+        },
+        "tooltip": [
+          {"field": "Country", "type": "nominal"},
+          {"field": "max_cases", "type": "quantitative", "format": ","},
+          {"field": "max_deaths", "type": "quantitative", "format": ","},
+          {
+            "field": "death rate",
+            "type": "quantitative",
+            "format": ".2f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "middle",
+        "dx": -12,
+        "fontSize": 11.5,
+        "fontStyle": "italic"
+      },
+      "encoding": {
+        "text": {"field": "Country", "type": "nominal"},
+        "color": {"value": "black"},
+        "opacity": {
+          "condition": {
+            "test": "datum['Country'] == 'Brazil' || datum['Country'] == 'Singapore' || datum['Country'] == 'Australia' || datum['Country'] == 'Argentina' || datum['Country'] == 'Italy' || datum['Country'] == 'India' ||  datum['Country'] == 'United States of America'||  datum['Country'] == 'Mexico'||  datum['Country'] == 'Russia'||  datum['Country'] == 'Afghanistan'||  datum['Country'] == 'Norway'||  datum['Country'] == 'South Africa'",
+            "value": 1
+          },
+          "value": 0
+        },
+        "tooltip": [
+          {"field": "Country", "type": "nominal"},
+          {"field": "max_cases", "type": "quantitative", "format": ","},
+          {"field": "max_deaths", "type": "quantitative", "format": ","},
+          {
+            "field": "death rate",
+            "type": "quantitative",
+            "format": ".2f"
+          }
+        ]
+      }
+    }
+  ]
+}
