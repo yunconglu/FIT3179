@@ -16,18 +16,18 @@
           "url": "https://yunconglu.github.io/FIT3179/covid.csv"
         },
         "key": "Country",
-        "fields": ["Cumulative_deaths"]
+        "fields": ["Cumulative_cases"]
       }
     }
   ],
   "mark": {"type": "geoshape"},
   "encoding": {
     "color": {
-      "field": "Cumulative_deaths",
+      "field": "Cumulative_cases",
       "type": "quantitative",
       "scale": {
         "type": "threshold",
-        "domain": [100, 5000, 10000, 30000, 100000, 150000],
+        "domain": [10000, 150000, 300000, 500000, 750000, 1000000],
         "range": [
           "#D4F2E7",
           "#F0E68C",
@@ -41,7 +41,7 @@
     },
     "tooltip": [
       {"field": "properties.NAME", "type": "nominal", "title": " Country"},
-      {"field": " Cumulative_deaths", "type": "quantitative"}
+      {"field": "Cumulative_cases", "type": "quantitative"}
     ]
   },
   "config": {}
