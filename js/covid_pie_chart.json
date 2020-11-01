@@ -12,12 +12,12 @@
     },
     "color": {"field": "Country", "type": "nominal", "legend": true},
     "tooltip": [
-      {"field": "Country", "type": "ordinal", "title": "Field A"},
+      {"field": "Country", "type": "ordinal", "title": "Country"},
       {
         "field": "Cumulative_cases",
         "aggregate": "max",
         "type": "ordinal",
-        "title": "Field B"
+        "title": "Cumulative cases"
       }
     ]
   },
