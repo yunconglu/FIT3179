@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-  "title": "COVID-19 World Cumulative Death (03 Jan 2020 -15 Oct 2020)",
+  "title": "COVID-19 World cumulative cases (03 Jan 2020 -15 Oct 2020)",
   "width": 800,
   "height": 600,
   "projection": {"type": "equirectangular"},
