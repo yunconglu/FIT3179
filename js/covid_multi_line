@@ -1,0 +1,77 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "data": {"url": "https://yunconglu.github.io/FIT3179/covid.csv"},
+  "transform": [
+    {"filter": "datum.New_cases>0"},
+    {"filter": "datum.New_cases<=1000000"},
+    {"filter": {"field": "Country", "oneOf": ["Brazil", "India","Argentina","United States of America","Mexico","Russian Federation"]}}
+  ],
+  "width": 400,
+  "height": 300,
+  "layer": [
+    {
+      "encoding": {
+        "x": {"field": "Date_reported", "type": "temporal"},
+        "y": {"field": "New_cases", "type": "quantitative"},
+        "color": {"field": "Country", "type": "nominal"}
+      },
+      "layer": [
+        {"mark": "line"},
+        {
+          "selection": {
+            "label": {
+              "type": "single",
+              "nearest": true,
+              "on": "mouseover",
+              "encodings": ["x"],
+              "empty": "none"
+            }
+          },
+          "mark": "point",
+          "encoding": {
+            "opacity": {
+              "condition": {"selection": "label", "value": 1},
+              "value": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "transform": [{"filter": {"selection": "label"}}],
+      "layer": [
+        {
+          "mark": {"type": "rule", "color": "gray"},
+          "encoding": {
+            "x": {"type": "temporal", "field": "Date_reported", "aggregate": "min"}
+          }
+        },
+        {
+          "encoding": {
+            "text": {"type": "quantitative", "field": "New_cases"},
+            "x": {"type": "temporal", "field": "Date_reported"},
+            "y": {"type": "quantitative", "field": "New_cases"}
+          },
+          "layer": [
+            {
+              "mark": {
+                "type": "text",
+                "stroke": "white",
+                "strokeWidth": 2,
+                "align": "left",
+                "dx": 5,
+                "dy": -5
+              }
+            },
+            {
+              "mark": {"type": "text", "align": "left", "dx": 5, "dy": -5},
+              "encoding": {
+                "color": {"type": "nominal", "field": "Country"}
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
