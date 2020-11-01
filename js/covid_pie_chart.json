@@ -1,32 +1,28 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-  "description": "Countries of over 750,000 Cumulative_cases",
-  "transform": [{"filter": "datum.Cumulative_cases > 750000"}],
+  "title": "COVID-19 Cumulative cases distribution in regions( 03 Jan 2020 -15 Oct 2020)",
+  "description": "COVID-19 distribution of regions",
   "data": {"url": "https://yunconglu.github.io/FIT3179/covid.csv"},
   "encoding": {
     "theta": {
-      "field": "Cumulative_cases",
+      "field": "New_cases",
       "type": "quantitative",
-      "aggregate": "max",
+      "aggregate": "sum",
       "stack": true
     },
-    "color": {"field": "Country", "type": "nominal", "legend": true},
+    "color": {"field": "WHO_region", "type": "nominal", "legend": true},
     "tooltip": [
-      {"field": "Country", "type": "ordinal", "title": "Country"},
+      {"field": "WHO_region", "type": "ordinal", "title": "Region"},
       {
-        "field": "Cumulative_cases",
-        "aggregate": "max",
+        "field": "New_cases",
+        "aggregate": "sum",
         "type": "ordinal",
         "title": "Cumulative cases"
       }
     ]
   },
   "layer": [
-    {"mark": {"type": "arc", "outerRadius": 80}},
-    {
-      "mark": {"type": "text", "radius": 90},
-      "encoding": {"text": {"field": "Country", "type": "nominal"}}
-    }
+    {"mark": {"type": "arc", "outerRadius": 80}}
   ],
   "view": {"stroke": null},
   "config": {}
