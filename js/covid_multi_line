@@ -44,7 +44,9 @@
         {
           "mark": {"type": "rule", "color": "gray"},
           "encoding": {
-            "x": {"type": "temporal", "field": "Date_reported"}
+            "x": {"type": "temporal", "field": "Date_reported",
+            "axis": {"title": ""}
+            }
           }
         },
         {
