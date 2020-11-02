@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
   "width": 400,
   "height": 300,
-  "title": "Cases for Countries (03 Jan 2020 -15 Oct 2020)",
+  "title": "Cumulative cases & deaths for Countries",
   "data": {
     "url": "https://yunconglu.github.io/FIT3179/covid.csv"
   },
