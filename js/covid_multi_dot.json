@@ -52,7 +52,7 @@
     ,
     {"joinaggregate": [{"op": "sum", "field": "New_deaths", "as": "max_deaths"}],
       "groupby": ["Country"]},
-      {"filter": "datum.Cumulative_cases>100 "},
+      {"filter": "datum.Cumulative_cases>10000 "},
     {"filter": "datum.Cumulative_deaths > 1"},
     {"filter": "datum.Cumulative_cases > Cumulative_Above"},
     {"filter": "Continent_selection == null || datum.WHO_region == Continent_selection"}
@@ -132,8 +132,8 @@
         "type": "text",
         "align": "right",
         "baseline": "middle",
-        "dx": -19,
-        "fontSize": 15.5,
+        "dx": -10,
+        "fontSize": 12,
         "fontStyle": "italic"
       },
       "encoding": {
@@ -141,7 +141,7 @@
         "color": {"value": "black"},
         "opacity": {
           "condition": {
-            "test": "datum['Country'] == 'Brazil' || datum['Country'] == 'Singapore' || datum['Country'] == 'Australia' || datum['Country'] == 'Argentina' || datum['Country'] == 'Italy' || datum['Country'] == 'India' ||  datum['Country'] == 'United States of America'||  datum['Country'] == 'Mexico'||  datum['Country'] == 'Russia'||  datum['Country'] == 'Afghanistan'||  datum['Country'] == 'Norway'||  datum['Country'] == 'South Africa'",
+            "test": "datum['Country'] == 'Singapore' || datum['Country'] == 'Australia' || datum['Country'] == 'Ukraine' || datum['Country'] == 'Italy' || datum['Country'] == 'India' ||  datum['Country'] == 'United States of America'||  datum['Country'] == 'Mexico'||  datum['Country'] == 'Russia'||  datum['Country'] == 'Afghanistan'||  datum['Country'] == 'Norway'||  datum['Country'] == 'South Africa'",
             "value": 1
           },
           "value": 0
