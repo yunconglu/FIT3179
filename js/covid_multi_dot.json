@@ -52,7 +52,7 @@
     ,
     {"joinaggregate": [{"op": "sum", "field": "New_deaths", "as": "max_deaths"}],
       "groupby": ["Country"]},
-      {"filter": "datum.Cumulative_cases>10000 "},
+      {"filter": "datum.Cumulative_cases>10 "},
     {"filter": "datum.Cumulative_deaths > 1"},
     {"filter": "datum.Cumulative_cases > Cumulative_Above"},
     {"filter": "Continent_selection == null || datum.WHO_region == Continent_selection"}
