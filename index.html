@@ -25,7 +25,7 @@
        background-color: lightgray;
      }
      .page{
-       width: 850px;    
+       width: 950px;    
        background-color: white;   
        margin: auto;
        padding: 50px;
@@ -77,14 +77,14 @@
         </div>
     </div>
     <!-- end pure grid group -->
-
-    <!-- pure grid group -->
+   
+   <!-- pure grid group -->
     <div class="pure-g">
         <div class="pure-u-2-3">
           <div id="vis2"  class="vis-container"></div>
         </div>
         <div class="pure-u-1-3">
-          <div class="description description-right">
+          <div class="description description-below">
             <h2>This is the second section</h2>
             <p>Similar to the previous section, but the colum partition is swapped. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Massa sapien faucibus et molestie ac feugiat sed. Egestas purus viverra accumsan in nisl.</p>
           </div>
@@ -95,36 +95,51 @@
 
     <!-- pure grid group -->
     <div class="pure-g">
+        <div class="pure-u-2-3">
+          <div id="vis2"  class="vis-container"></div>
+        </div>
+        <div class="pure-u-1-3">
+          <div class="description description-right">
+            <h2>This is the 3 section</h2>
+            <p>Similar to the previous section, but the colum partition is swapped. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Massa sapien faucibus et molestie ac feugiat sed. Egestas purus viverra accumsan in nisl.</p>
+          </div>
+        </div>
+      
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- pure grid group -->
+    <div class="pure-g">
       <div class="pure-u-1-3">
-        <div class="description description-left">
-          <h2>This is the third section</h2>
+        <div class="description description-right">
+          <h2>This is the 4 section</h2>
           <p>Using all three columns without merging. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Massa sapien faucibus et molestie ac feugiat sed. Egestas purus viverra accumsan in nisl.</p>
         </div>
       </div>
       <div class="pure-u-1-3">
         <div id="vis4"  class="vis-container"></div>
       </div>
-      <div class="pure-u-1-3">
-        <div id="vis3"  class="vis-container"></div>
-      </div>
     
     </div>
     <!-- end pure grid group -->
-  
+    
+   
     <div class="pure-g">
       <div class="pure-u-1-1 small-font">
         <p>This visualisation is created by <a href="https://github.com/yunconglu" target="_blank">Yuncong Lu</a>. The datasource is <a href="https://covid19.who.int/table"" target="_blank">Download from World Health Organization</href>.</p>
       </div>
     </div>
+    
   
 
   </div> <!-- end page -->
    
 <script type="text/javascript">
   var specVis1 = "js/covid_pie_chart.json";
-  var specVis2= "js/covid_multi_line.json";
-  var specVis3 = "js/covid_multi_dot.json";
-  var specVis4= "js/covid_ch_map.json";
+  var specVis2= "js/covid_ch_map.json";
+  var specVis3= "js/covid_multi_line.json";
+  var specVis4 = "js/covid_multi_dot.json";
+  
 
   vegaEmbed('#vis1', specVis1, {"actions": false}).then(function(result) {
     // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
