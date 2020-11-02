@@ -7,8 +7,8 @@
     {"filter": "datum.New_cases<=1000000"},
     {"filter": {"field": "Country", "oneOf": ["Brazil", "India","Argentina","United States of America","Mexico","Russia"]}}
   ],
-  "width": 400,
-  "height": 300,
+  "width": 350,
+  "height": 250,
   "layer": [
     {
       "encoding": {
