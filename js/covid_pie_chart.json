@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-  "title": "COVID-19 Cumulative cases distribution in regions( 03 Jan 2020 -15 Oct 2020)",
+  "title": "Cumulative cases distribution in regions",
   "description": "COVID-19 distribution of regions",
   "data": {"url": "https://yunconglu.github.io/FIT3179/covid.csv"},
   "encoding": {
